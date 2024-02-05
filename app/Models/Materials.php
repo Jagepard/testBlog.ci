@@ -12,7 +12,7 @@ class Materials extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'text'];
+    protected $allowedFields    = ['title', 'slug', 'text'];
 
     protected bool $allowEmptyInserts = false;
 
