@@ -7,7 +7,7 @@
 <?= $this->section('content') ?>
 <br>
 <?php if (!empty($material['image'])): ?>
-  <img src="<?= base_url() ?>images/<?= $material['image']?>" height="250">
+  <img src="<?= base_url() ?>uploads/<?= $material['image']?>" height="250">
   <a href="<?= base_url() ?>admin/material/delimg?id=<?= $material['id'] ?>"><button type="button" class="btn btn-danger">delete</button></a>
 <?php endif; ?>
 <form action="<?= base_url() ?>admin/material/update/<?= $material['id'] ?>" method="post" enctype="multipart/form-data">

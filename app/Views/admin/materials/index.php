@@ -15,7 +15,7 @@
 <?php foreach($materials as $material): ?>
     <tr>
     <td><p><?= $material['id']?></p></td>
-    <td><?php if (!empty($material['image'])): ?><img src="<?= base_url() ?>images/thumb/<?= $material['image']?>"><?php endif; ?></td>
+    <td><?php if (!empty($material['image'])): ?><img src="<?= base_url() ?>uploads/thumb/<?= $material['image']?>"><?php endif; ?></td>
     <td><p><?= $material['title']?></p></td>
 
     <td>
