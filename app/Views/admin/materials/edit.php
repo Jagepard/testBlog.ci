@@ -1,14 +1,17 @@
-<?php 
-use Rudra\Container\Facades\Rudra; 
-use Rudra\Container\Facades\Session;
-?>
+<?= $this->extend('admin/layout') ?>
+
+<?= $this->section('title', true) ?>
+<?= $title ?>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
 <br>
 <?php if (!empty($material['image'])): ?>
-  <img src="<?= Rudra::config()->get('url') ?>/images/<?= $material['image']?>" height="250">
-  <a href="<?= Rudra::config()->get('url') ?>/admin/material/delimg?id=<?= $material['id'] ?>"><button type="button" class="btn btn-danger">delete</button></a>
+  <img src="<?= base_url() ?>images/<?= $material['image']?>" height="250">
+  <a href="<?= base_url() ?>admin/material/delimg?id=<?= $material['id'] ?>"><button type="button" class="btn btn-danger">delete</button></a>
 <?php endif; ?>
-<form action="<?= Rudra::config()->get('url') ?>/admin/material/update/<?= $material['id'] ?>" method="post" enctype="multipart/form-data">
-<input type='hidden' name='csrf_field' value='<?= Session::get('csrf_token')[0]; ?>'>
+<form action="<?= base_url() ?>admin/material/update/<?= $material['id'] ?>" method="post" enctype="multipart/form-data">
+<?= csrf_field() ?>
 <input type='hidden' name='redirect' value='<?= $redirect; ?>'>
 <input type='hidden' name='image' value='<?= $material['image']?>'>
 <br>
@@ -38,3 +41,4 @@ use Rudra\Container\Facades\Session;
   </div>
   <button type="submit" class="btn btn-primary">Обновить</button>
 </form>
+<?= $this->endSection() ?>

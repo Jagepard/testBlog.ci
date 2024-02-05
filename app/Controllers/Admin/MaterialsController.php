@@ -4,10 +4,15 @@ namespace App\Controllers\Admin;
 
 use App\Models\Materials;
 use App\Controllers\BaseController;
+use App\Helpers\HelperTrait;
+use App\Helpers\Translator;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class MaterialsController extends BaseController
 {
+    use Translator;
+    use HelperTrait;
+
     public function __construct()
     {
         $this->model = new Materials();
@@ -15,6 +20,8 @@ class MaterialsController extends BaseController
 
     public function materials()
     {
+        $this->model->orderBy('id', 'DESC');
+
         return view('admin/materials/index', [
             'materials'   => $this->model->paginate(10, 'group1'),
             'pager'       => $this->model->pager,
@@ -34,6 +41,7 @@ class MaterialsController extends BaseController
     public function create()
     {
         $data = $this->request->getPost(['title', 'text']);
+        $data['slug'] = $this->translit($data['title']);
 
         if (!$this->validateData($data, [
             'title' => 'required|max_length[255]|min_length[3]',
@@ -43,6 +51,37 @@ class MaterialsController extends BaseController
         }
 
         $this->model->insert($data);
-        return redirect()->to('admin');
+        return redirect()->to('/admin');
+    }
+
+    public function edit(string $slug)
+    {
+        return view('admin/materials/edit', [
+            'title' => 'АДМИНКА: Обновить материал',
+            'material' => $this->model->find($this->getIdFromSlug($slug)),
+            'redirect' => request()->getServer('HTTP_REFERER')
+        ]);
+    }
+
+    public function update(string $slug)
+    {
+        $data = $this->request->getPost(['title', 'text']);
+        $data['slug'] = $this->translit($data['title']);
+
+        if (!$this->validateData($data, [
+            'title' => 'required|max_length[255]|min_length[3]',
+            'text'  => 'required|max_length[5000]|min_length[10]',
+        ])) {
+            return $this->edit($slug);
+        }
+
+        $this->model->update($this->getIdFromSlug($slug), $data);
+        return redirect()->to($this->request->getPost('redirect'));
+    }
+
+    public function delete()
+    {
+        $this->model->delete($this->request->getGet('id'));
+        return redirect()->to('/admin');
     }
 }
