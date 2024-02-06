@@ -19,8 +19,10 @@ use Rudra\Container\Facades\Session;
           <a class="link-underline link-underline-opacity-0" href="<?= base_url() ?>admin"><h1>Dashboard</h1></a>
         </div>
         <div class="col border">
-            <p>Вы вошли как: <i></i></p>
+          <?php if (auth()->loggedIn()): ?>
+            <p>Вы вошли как: <i><?= auth()->user()->getEmail() ?></i></p>
             <a href="<?= base_url() ?>/logout">Выйти</a>
+          <?php endif; ?>
         </div>
       </div>
     <hr>
