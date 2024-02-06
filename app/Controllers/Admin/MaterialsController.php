@@ -23,7 +23,7 @@ class MaterialsController extends BaseController
         $this->model->orderBy('id', 'DESC');
 
         return view('admin/materials/index', [
-            'materials'   => $this->model->paginate(10, 'group1'),
+            'materials'   => $this->model->paginate(3, 'group1'),
             'pager'       => $this->model->pager,
             'currentPage' => $this->model->pager->getCurrentPage('group1'), // The current page number
             'totalPages'  => $this->model->pager->getPageCount('group1'),   // The total page count
