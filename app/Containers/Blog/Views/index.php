@@ -1,4 +1,4 @@
-<?= $this->extend('blog/layout') ?>
+<?= $this->extend('Blog\layout') ?>
 
 <?= $this->section('title', true) ?>
 <?= $title ?>

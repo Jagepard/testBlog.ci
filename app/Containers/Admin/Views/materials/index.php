@@ -1,4 +1,4 @@
-<?= $this->extend('admin/layout') ?>
+<?= $this->extend('Admin\layout') ?>
 
 <?= $this->section('title', true) ?>
 <?= $title ?>

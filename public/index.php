@@ -29,6 +29,8 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
  * and fires up an environment-specific bootstrapping.
  */
 
+
+
 // Load our paths config file
 // This is the line that might need to be changed, depending on your folder structure.
 require FCPATH . '../app/Config/Paths.php';
@@ -37,6 +39,7 @@ require FCPATH . '../app/Config/Paths.php';
 $paths = new Config\Paths();
 
 // Location of the framework bootstrap file.
+
 require rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 // Load environment settings from .env files into $_SERVER and $_ENV
