@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controllers\Blog;
+namespace Blog\Controllers;
 
+use Blog\Models\Materials;
+use Blog\Helpers\HelperTrait;
 use App\Controllers\BaseController;
-use App\Helpers\HelperTrait;
-use App\Models\Materials;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class MaterialsController extends BaseController
@@ -20,7 +20,7 @@ class MaterialsController extends BaseController
     {
         $this->model->orderBy('id', 'DESC');
 
-        return view('blog/index', [
+        return view('Blog\index', [
             'materials'   => $this->model->paginate(10, 'group1'),
             'pager'       => $this->model->pager,
             'currentPage' => $this->model->pager->getCurrentPage('group1'), // The current page number
@@ -33,7 +33,7 @@ class MaterialsController extends BaseController
     {
         $material = $this->model->find($this->getIdFromSlug($slug));
 
-        return view('blog/item', [
+        return view('Blog\item', [
             'material' => $material,
             'title'    => "$this->title :: {$material['title']}"
         ]);

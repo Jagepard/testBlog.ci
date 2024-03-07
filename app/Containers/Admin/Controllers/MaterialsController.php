@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace Admin\Controllers;
 
-use App\Models\Materials;
+use Admin\Models\Materials;
 use App\Controllers\BaseController;
-use App\Helpers\HelperTrait;
-use App\Helpers\Translator;
+use Admin\Helpers\HelperTrait;
+use Admin\Helpers\Translator;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class MaterialsController extends BaseController
@@ -16,13 +16,18 @@ class MaterialsController extends BaseController
     public function __construct()
     {
         $this->model = new Materials();
+        $user = auth()->user();
+        
+        if (!$user->inGroup('admin')) {
+            return redirect()->to('/');
+        }
     }
 
     public function materials()
     {
         $this->model->orderBy('id', 'DESC');
 
-        return view('admin/materials/index', [
+        return view('Admin\materials/index', [
             'materials'   => $this->model->paginate(3, 'group1'),
             'pager'       => $this->model->pager,
             'currentPage' => $this->model->pager->getCurrentPage('group1'), // The current page number
@@ -33,7 +38,7 @@ class MaterialsController extends BaseController
 
     public function add()
     {
-        return view('admin/materials/add', [
+        return view('Admin\materials/add', [
             'title' => 'АДМИНКА: Добавить материал',
         ]);
     }
@@ -57,7 +62,7 @@ class MaterialsController extends BaseController
 
     public function edit(string $slug)
     {
-        return view('admin/materials/edit', [
+        return view('Admin\materials/edit', [
             'title'    => 'АДМИНКА: Обновить материал',
             'material' => $this->model->find($this->getIdFromSlug($slug)),
             'redirect' => $this->request->getServer('HTTP_REFERER')
