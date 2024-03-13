@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => 'localhost',
         'username'     => 'jagepard',
         'password'     => 'password',
-        'database'     => 'TestBlog_ci',
+        'database'     => 'testBlog_ci',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

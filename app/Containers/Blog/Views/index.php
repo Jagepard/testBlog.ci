@@ -14,7 +14,7 @@
     <div class="col">
     <div class="card">
     <a href="<?= base_url() ?>material/<?= $material['id'] ?>_<?= $material['slug'] ?>">
-    <img src="<?= base_url() ?>uploads/<?= $material['image'] ?>" class="card-img-top" alt="<?= $material['title']?>">
+    <?php if (!empty($material['image'])): ?><img src="<?= base_url() ?>uploads/<?= $material['image'] ?>" class="card-img-top" alt="<?= $material['title']?>"><?php endif; ?>
     </a>
       <div class="card-body">
         <h5 class="card-title"><a class="link-secondary link-underline link-underline-opacity-0" href="<?= base_url() ?>material/<?= $material['id'] ?>_<?= $material['slug'] ?>"><?= $material['title']?></a></h5>
