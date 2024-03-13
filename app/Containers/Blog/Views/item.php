@@ -6,7 +6,7 @@
 
 <?= $this->section('content') ?>
 <br>
-<img src="<?= base_url() ?>uploads/<?= $material['image'] ?>" class="card-img-top" alt="<?= $material['title']?>">
+<?php if (!empty($material['image'])): ?><img src="<?= base_url() ?>uploads/<?= $material['image'] ?>" class="card-img-top" alt="<?= $material['title']?>"><?php endif; ?>
 <h2><?= $material['title'] ?></h2>
 <p><?= htmlspecialchars_decode($material['text'])?></p>
 <?= $this->endSection() ?>
