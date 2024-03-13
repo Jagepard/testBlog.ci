@@ -62,7 +62,7 @@ php spark serve
 
 Admin panel:
 ```
-http://127.0.0.1:8000/admin
+http://localhost:8080/admin
 ```
 User identity:
 ```
