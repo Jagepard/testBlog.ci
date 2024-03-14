@@ -119,8 +119,6 @@ nb-configuration.xml
 .phpintel
 /api/
 
-# Visual Studio Code
-.vscode/
 
 /results/
 /phpunit*.xml
